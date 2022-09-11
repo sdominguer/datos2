@@ -1,4 +1,5 @@
 import random
+
 nombreHombre =["ANTONIO",
   "MANUEL",
   "JOSE",
@@ -287,27 +288,30 @@ departamento_aux=["Amazonas",
 "Valle del Cauca",
 "Vaupés",
 "Vichada"]
-edad=0
-dic={}
-departamento=""
+
+edad_lista=[]
+departamento_lista=[]
+lista_estado=[]
+
 def generarNombreSexoEdad():
   sexo = random.choice(['Masculino','Femenino'])
   if sexo =='Masculino':
     nombre = random.choice(nombreHombre)
   else:
     nombre = random.choice(nombreMujer)
-  global edad
   edad = 4
   apellido1 = random.choice(apellidos)
   apellido2 = random.choice(apellidos)
   ano = random.randint(1950, 2022)
   ano_inicial=ano
-  global departamento
   departamento=random.choice(departamento_aux)
-  
-  global dic
-  dic={}
-  estado = ['Aprobado', 'Aprobado' ,'Perdido', 'Aprobado', 'Desertado', 'Aprobado',"Aprobado","Perdido","Aprobado","Aprobado"]
+
+  dic = {}
+  estado = ['Aprobado', 'Aprobado' ,'Perdido', 'Aprobado', 'Desertado', 'Aprobado',"Aprobado","Perdido","Aprobado","Aprobado","Abandono"]
+  contador_aprobado=0
+  contador_perdido=0
+  contador_abandono=0
+  contador_desertado=0
 
   for i in grado:
     estadoaux = random.choice(estado)
@@ -319,6 +323,9 @@ def generarNombreSexoEdad():
       ano+=1
       contador_perdido+=1
       dic.update({ano:{i:'Aprobado'}})
+    elif estadoaux=="Abandono":
+      dic.update({ano:{i:estadoaux}})
+      break
     else:
       dic.update({ano:{i:estadoaux}})
       ano = random.randint(ano+1, ano+5)
@@ -326,8 +333,22 @@ def generarNombreSexoEdad():
     ano += 1
   edad = ano-ano_inicial+5
 
+  #lista edad
+  global edad_lista
+  edad_lista=[edad]+edad_lista
+
+  #lista depto
+  global departamento_lista
+  departamento_lista=[departamento]+departamento_lista
+
+  #lista estados
+  global lista_estado
+  lista_estado=[estado]+lista_estado
+
   return {'Nombre':nombre+" "+apellido1+" "+apellido2,
             'Sexo':sexo,
             'Edad':edad,
             'Cursos': dic,
-            "Departamento":departamento}
+            "Departamento":departamento,
+          }
+  

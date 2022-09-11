@@ -287,25 +287,27 @@ departamento_aux=["Amazonas",
 "Valle del Cauca",
 "Vaupés",
 "Vichada"]
-
+edad=0
+dic={}
+departamento=""
 def generarNombreSexoEdad():
   sexo = random.choice(['Masculino','Femenino'])
   if sexo =='Masculino':
     nombre = random.choice(nombreHombre)
   else:
     nombre = random.choice(nombreMujer)
+  global edad
   edad = 4
   apellido1 = random.choice(apellidos)
   apellido2 = random.choice(apellidos)
   ano = random.randint(1950, 2022)
   ano_inicial=ano
+  global departamento
   departamento=random.choice(departamento_aux)
   
-  dic = {}
+  global dic
+  dic={}
   estado = ['Aprobado', 'Aprobado' ,'Perdido', 'Aprobado', 'Desertado', 'Aprobado',"Aprobado","Perdido","Aprobado","Aprobado"]
-  contador_aprobado=0
-  contador_perdido=0
-  contador_desertado=0
 
   for i in grado:
     estadoaux = random.choice(estado)
@@ -324,16 +326,8 @@ def generarNombreSexoEdad():
     ano += 1
   edad = ano-ano_inicial+5
 
-  prob_aprob=(100*contador_aprobado)/11
-  prob_perd=(100*contador_perdido)/11
-  prob_dese=(100*contador_desertado)/11
-
   return {'Nombre':nombre+" "+apellido1+" "+apellido2,
             'Sexo':sexo,
             'Edad':edad,
             'Cursos': dic,
-            "Departamento":departamento,
-            "Probabilidad Aprobar" : prob_aprob,
-            "Probabilidad Perder" : prob_perd,
-            "Probabilidad Desertar" : prob_dese}
-          
+            "Departamento":departamento}

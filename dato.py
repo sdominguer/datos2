@@ -8,9 +8,9 @@ class Dato:
     self.edad = dato['Edad']
     self.cursos = dato['Cursos']
     self.departamento = dato["Departamento"]
-    self.prob_aprob = dato["Probabilidad Aprobar"]
-    self.prob_perd = dato["Probabilidad Perder"]
-    self.prob_dese = dato["Probabilidad Desertar"]
+    self.cursosp = dato["cursosP"]
+    self.retiro = dato["retiro"]
+  
   
   #==
   def __eq__ (self, __o: object) -> bool:
@@ -31,6 +31,13 @@ class Dato:
   #>=
   def __ge__ (self, __o: object) -> bool:
     return (self.departamento >= __o.departamento) #and (self.sexo == __o.sexo)
+  
+  #!=
+  def __ne__ (self, __o: object) -> bool:
+    return (self.departamento != __o.departamento) #or (self.sexo != __o.sexo)
+
+  def __str__(self):
+    return f'OD=[Nombre: {self.nombre}, Edad: {self.edad}, Sexo: {self.sexo}, Cursos: {self.cursos}, Departamento: {self.departamento}]'
   
   #!=
   def __ne__ (self, __o: object) -> bool:

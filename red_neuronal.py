@@ -1,3 +1,4 @@
+
 from tabnanny import verbose
 import tensorflow as tf
 import numpy as np
@@ -7,8 +8,8 @@ from generar import *
 
 # Datos de verdad
 #[graduado: 0|1, cod_ciudad: 000-1111, edad: 0, 2]
-training_data = np.array([[contador_lista_anos, ultimo_ano, indice],'float32']) # Estimulos               #   ENTRENAN RED
-target_data = np.array([[estado_var], 'float32']) # Acciones
+training_data = np.array([[5, 17, 27], [0, 1], [1, 0], [1, 1], 'float32']) # Estimulos               #   ENTRENAN RED
+target_data = np.array([[0.000006], [0], [1], [1], 'float32']) # Acciones
 
 n_entrada = len(training_data[0]) #2
 n_nodos = 16

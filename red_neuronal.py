@@ -39,11 +39,8 @@ model.compile(loss='mean_squared_error', optimizer='adam', metrics=['binary_accu
 
 model.fit(training_data, target_data, epochs = 1000, verbose = 1) # verbose = 0 es sin eco (no lo muestra en pantalla)
 
+real_data = np.array([[19,2]],'float32')
 
+resultado = model.predict(real_data, verbose=1)
 
-#==============================================================================
-
-real_data = np.array([[contador_lista_anos, ultimo_ano, indice],"float32"])
-resultado = model.predict(real_data, verbose = 1)
 print(f'Entrada: {real_data[0]} => {resultado[0]}')
-#0.73724

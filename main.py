@@ -1,8 +1,9 @@
 from datos import *
 from metodosOrden import *
-import matplotlib.pyplot as plt
+from generar import *
+from red_neuronal import *
 
-lista = generarDatos(10)
+lista = generarDatos(1000)
 
 '''
 for elemento in lista:
@@ -13,5 +14,7 @@ print("Quick Sort")
 
 lista = QuickSort(lista)
 
-for elemento in lista:
-    print(elemento)
+"""for elemento in lista:
+    print(elemento)"""
+
+rnn(lista)

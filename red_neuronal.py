@@ -14,9 +14,9 @@ from keras.layers import Dense
 
 #[graduado: 0|1, cod_ciudad: 000-1111, edad: 0, 2]
 
-training_data = np.array([[22, 3], [17, 1], [10, 1], [24, 4]], 'float32') # Estimulos               #   ENTRENAN RED
+training_data = np.array([[22, 3], [17, 1], [10, 1], [24, 4],[18,2],[19,1],[22,0],[22,3],[29,2],[31,3],[16,0],[22,3],[17,1],[18,2]], 'float32') # Estimulos               #   ENTRENAN RED
 
-target_data = np.array([[1], [0], [0], [1]] ,'float32') # Acciones
+target_data = np.array([[1], [0], [0], [1],[0],[1],[1],[1],[1],[1],[0],[1],[0],[0]] ,'float32') # Acciones
 
 
 n_entrada = len(training_data[0]) #2

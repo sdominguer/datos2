@@ -261,7 +261,7 @@ departamento_aux=["Amazonas",
 "Atlántico",
 "Bogotá",
 "Bolívar",
-"Boyacá",
+"Boyacá", #6
 "Caldas",
 "Caquetá",  
 "Casanare",
@@ -271,7 +271,7 @@ departamento_aux=["Amazonas",
 "Córdoba",
 "Cundinamarca",
 "Guainía",  
-"Guaviare",
+"Guaviare", #16
 "Huila", #17
 "La Guajira",
 "Magdalena",
@@ -292,11 +292,13 @@ departamento_aux=["Amazonas",
 
 edad_lista=[]
 departamento_lista=[]
-lista_estado=[]
+lista_estado=0
 contador_lista_anos=0
 ultimo_ano=0
 indice=0
 estado_var=0
+contador_perdido=0
+
 
 def generarNombreSexoEdad():
   sexo = random.choice(['Masculino','Femenino'])
@@ -314,9 +316,10 @@ def generarNombreSexoEdad():
   dic = {}
   estado = ['Aprobado', 'Aprobado' ,'Perdido', 'Aprobado', 'Desertado', 'Aprobado',"Aprobado","Perdido","Aprobado","Aprobado","Abandono"]
   contador_aprobado=0
-  contador_perdido=0
-  contador_abandono=0
+  global contador_perdido
   contador_desertado=0
+  cp=0
+  d = 0
 
   for i in grado:
     if i==grado[-1]:
@@ -330,10 +333,11 @@ def generarNombreSexoEdad():
       elif estadoaux == 'Perdido':
         dic.update({ano:{i:estadoaux}})
         ano+=1
-        contador_perdido+=1
+        cp+=1
         dic.update({ano:{i:'Aprobado'}})
       elif estadoaux=="Abandono":
         dic.update({ano:{i:estadoaux}})
+        d=1
         break
       else:
         dic.update({ano:{i:estadoaux}})
@@ -343,16 +347,17 @@ def generarNombreSexoEdad():
 
   edad = ano-ano_inicial+5
 
-  global estado_var
-  estado_var=0
-  if estadoaux=="Finalizó":
-    estado_var=0
-  elif estadoaux=="Abandono":
-    estado_var=1
 
   #lista edad
   global edad_lista
-  edad_lista=[edad]+edad_lista
+  edad_lista=edad
+
+  global estado_var
+  if edad>19 and edad_lista>1:
+    estado_var=1
+  else:
+    estado_var=0
+
 
   #lista depto
   global departamento_lista
@@ -360,26 +365,24 @@ def generarNombreSexoEdad():
 
   #lista estados
   global lista_estado
-  lista_estado=[estado]+lista_estado
+  if estadoaux=="Perdido":
+    lista_estado=lista_estado+1
+    print(lista_estado)
 
   lista_anos=dic.keys()
   global contador_lista_anos
   for i in range(len(lista_anos)):
     contador_lista_anos+=1
 
-  global ultimo_ano
-  ultimo_ano=edad_lista[-1]
 
   global indice
   indice=departamento_aux.index(departamento)
-
-
 
   return {'Nombre':nombre+" "+apellido1+" "+apellido2,
             'Sexo':sexo,
             'Edad':edad,
             'Cursos': dic,
             "Departamento":departamento,
+            'cursosP':cp,
+            "retiro":d
           }
-  
-
